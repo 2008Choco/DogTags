@@ -1,0 +1,8 @@
+{
+    "item.dogtags.collar": "Collar",
+	"item.dogtags.collar.unowned": "You do not own this ",
+	"item.dogtags.collar_tag": "Collar Tag",
+	"item.dogtags.collar_tag.memorium": "In loving memory of ",
+	"item.dogtags.collar_tag.memorium_unnamed": "In loving memory of a friend",
+	"item.dogtags.collar_tag.date": "Passed on {0}"
+}
