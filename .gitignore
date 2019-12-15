@@ -76,9 +76,6 @@ run/
 build/
 gradle/
 .gradle/
-gradlew
-gradlew.bat
-gradle.properties
 libs/
 
 ### Intellij ###
