@@ -1,6 +1,6 @@
 package wtf.choco.dogtags;
 
-import com.google.common.base.Function;
+import java.util.function.Function;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderer;
