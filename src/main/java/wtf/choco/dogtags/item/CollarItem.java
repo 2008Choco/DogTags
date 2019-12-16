@@ -41,7 +41,7 @@ public class CollarItem extends Item implements IDyeableArmorItem {
         }
 
         ICollarCapability capability = target.getCapability(DogTagCapabilities.COLLAR).orElseThrow(IllegalStateException::new);
-        if (capability.hasCollar() && capability.getCollarRGB() == ((IDyeableArmorItem) stack.getItem()).getColor(stack) && (!stack.hasDisplayName() || stack.getDisplayName().equals(entity.getCustomName()))) {
+        if (capability.hasCollar() && capability.getCollarRGB() == ((CollarItem) stack.getItem()).getColor(stack) && (!stack.hasDisplayName() || stack.getDisplayName().equals(entity.getCustomName()))) {
             return false;
         }
 

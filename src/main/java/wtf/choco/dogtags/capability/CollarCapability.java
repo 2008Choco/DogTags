@@ -1,9 +1,9 @@
 package wtf.choco.dogtags.capability;
 
 import net.minecraft.item.DyeColor;
-import net.minecraft.item.IDyeableArmorItem;
 import net.minecraft.item.ItemStack;
 
+import wtf.choco.dogtags.item.CollarItem;
 import wtf.choco.dogtags.item.ModItems;
 
 public class CollarCapability implements ICollarCapability {
@@ -23,7 +23,7 @@ public class CollarCapability implements ICollarCapability {
 
         if (collar.getItem() == ModItems.COLLAR) {
             this.setHasCollar(true);
-            this.setCollarRGB(((IDyeableArmorItem) ModItems.COLLAR).getColor(collar));
+            this.setCollarRGB(((CollarItem) ModItems.COLLAR).getColor(collar));
             return true;
         }
 
@@ -37,7 +37,7 @@ public class CollarCapability implements ICollarCapability {
         }
         
         ItemStack stack = new ItemStack(ModItems.COLLAR);
-        ((IDyeableArmorItem) ModItems.COLLAR).setColor(stack, collarRGB);
+        ((CollarItem) ModItems.COLLAR).setColor(stack, collarRGB);
         return stack;
     }
 
