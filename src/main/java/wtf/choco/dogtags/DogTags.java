@@ -1,16 +1,15 @@
 package wtf.choco.dogtags;
 
-import java.util.function.Function;
+import java.util.function.Supplier;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.LivingRenderer;
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.CatEntity;
+import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -25,8 +24,10 @@ import wtf.choco.dogtags.capability.ICollarCapability;
 import wtf.choco.dogtags.item.CollarItemColourRenderer;
 import wtf.choco.dogtags.item.ModItems;
 import wtf.choco.dogtags.network.DogTagsPacketHandler;
-import wtf.choco.dogtags.render.EnhancedCatCollarLayer;
-import wtf.choco.dogtags.render.EnhancedWolfCollarLayer;
+import wtf.choco.dogtags.render.CatCollarData;
+import wtf.choco.dogtags.render.CollarData;
+import wtf.choco.dogtags.render.EnhancedCollarLayer;
+import wtf.choco.dogtags.render.WolfCollarData;
 
 // https://www.reddit.com/r/minecraftsuggestions/comments/e8jzh9/to_remember_them/
 
@@ -52,15 +53,15 @@ public final class DogTags {
         minecraft.getItemColors().register(new CollarItemColourRenderer(), ModItems.COLLAR);
 
         EntityRendererManager rendererManager = minecraft.getRenderManager();
-        this.addEnhancedRenderer(rendererManager, WolfEntity.class, EnhancedWolfCollarLayer::new);
-        this.addEnhancedRenderer(rendererManager, CatEntity.class, EnhancedCatCollarLayer::new);
+        this.addEnhancedRenderer(rendererManager, WolfEntity.class, WolfCollarData::new);
+        this.addEnhancedRenderer(rendererManager, CatEntity.class, CatCollarData::new);
     }
 
     @SuppressWarnings("unchecked")
-    private <T extends LivingEntity, M extends EntityModel<T>> void addEnhancedRenderer(EntityRendererManager rendererManager, Class<T> type, Function<IEntityRenderer<T, M>, LayerRenderer<T, M>> layerCreator) {
+    private <T extends TameableEntity, M extends EntityModel<T>> void addEnhancedRenderer(EntityRendererManager rendererManager, Class<T> type, Supplier<CollarData<T, M>> collarDataCreator) {
         EntityRenderer<T> renderer = rendererManager.getRenderer(type);
         if (renderer instanceof LivingRenderer) {
-            ((LivingRenderer<T, M>) renderer).addLayer(layerCreator.apply((IEntityRenderer<T, M>) renderer));
+            ((LivingRenderer<T, M>) renderer).addLayer(new EnhancedCollarLayer<>((IEntityRenderer<T, M>) renderer, collarDataCreator.get()));
         }
     }
 
