@@ -10,7 +10,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TranslationTextComponent;
+
 import net.minecraftforge.fml.network.PacketDistributor;
 
 import wtf.choco.dogtags.DogTags;
@@ -58,7 +60,8 @@ public class CollarItem extends Item implements IDyeableArmorItem {
                     double xOffset = entity.world.rand.nextGaussian() * 0.02D;
                     double yOffset = entity.world.rand.nextGaussian() * 0.02D;
                     double zOffset = entity.world.rand.nextGaussian() * 0.02D;
-                    entity.world.addParticle(ParticleTypes.HEART, entity.posX + entity.world.rand.nextFloat() * entity.getWidth() * 2.0F - entity.getWidth(), entity.posY + 0.5D + entity.world.rand.nextFloat() * entity.getHeight(), entity.posZ + entity.world.rand.nextFloat() * entity.getWidth() * 2.0F - entity.getWidth(), xOffset, yOffset, zOffset);
+                    BlockPos pos = entity.getPosition();
+                    entity.world.addParticle(ParticleTypes.HEART, pos.getX() + entity.world.rand.nextFloat() * entity.getWidth() * 2.0F - entity.getWidth(), pos.getY() + 0.5D + entity.world.rand.nextFloat() * entity.getHeight(), pos.getZ() + entity.world.rand.nextFloat() * entity.getWidth() * 2.0F - entity.getWidth(), xOffset, yOffset, zOffset);
                 }
             }
 

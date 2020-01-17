@@ -15,6 +15,9 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
 import wtf.choco.dogtags.DogTags;
 
 public class CollarTagItem extends Item {
@@ -25,6 +28,7 @@ public class CollarTagItem extends Item {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT) // Must use because of ITooltipFlag
     public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (!stack.hasTag()) {
             return;
