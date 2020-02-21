@@ -21,7 +21,7 @@ public class EnhancedCatCollarLayer extends LayerRenderer<CatEntity, CatModel<Ca
     }
 
     @Override // render()
-    public void func_225628_a_(MatrixStack stack, IRenderTypeBuffer renderType, int p_225628_3_, CatEntity entity, float p_225628_5_, float p_225628_6_, float p_225628_7_, float p_225628_8_, float p_225628_9_, float p_225628_10_) {
+    public void render(MatrixStack stack, IRenderTypeBuffer renderType, int p_225628_3_, CatEntity entity, float p_225628_5_, float p_225628_6_, float p_225628_7_, float p_225628_8_, float p_225628_9_, float p_225628_10_) {
         if (entity.isTamed() && !entity.isInvisible()) {
             entity.getCapability(DogTagCapabilities.COLLAR).ifPresent(c -> {
                 if (!c.hasCollar()) {
@@ -33,7 +33,7 @@ public class EnhancedCatCollarLayer extends LayerRenderer<CatEntity, CatModel<Ca
                 float g = (rgb >> 8) & 0xFF;
                 float b = rgb & 0xFF;
 
-                func_229140_a_(getEntityModel(), model, CAT_COLLAR, stack, renderType, p_225628_3_, entity, p_225628_5_, p_225628_6_, p_225628_8_, p_225628_9_, p_225628_10_, p_225628_7_, r / 255.0F, g / 255.0F, b / 255.0F);
+                renderCopyCutoutModel(getEntityModel(), model, CAT_COLLAR, stack, renderType, p_225628_3_, entity, p_225628_5_, p_225628_6_, p_225628_8_, p_225628_9_, p_225628_10_, p_225628_7_, r / 255.0F, g / 255.0F, b / 255.0F);
             });
         }
     }

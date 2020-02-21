@@ -20,7 +20,7 @@ public class EnhancedWolfCollarLayer<T extends TameableEntity, M extends EntityM
     }
 
     @Override // render()
-    public void func_225628_a_(MatrixStack stack, IRenderTypeBuffer renderType, int p_225628_3_, T entity, float p_225628_5_, float p_225628_6_, float p_225628_7_, float p_225628_8_, float p_225628_9_, float p_225628_10_) {
+    public void render(MatrixStack stack, IRenderTypeBuffer renderType, int p_225628_3_, T entity, float p_225628_5_, float p_225628_6_, float p_225628_7_, float p_225628_8_, float p_225628_9_, float p_225628_10_) {
         if (entity.isTamed() && !entity.isInvisible()) {
             entity.getCapability(DogTagCapabilities.COLLAR).ifPresent(c -> {
                 if (!c.hasCollar()) {
@@ -32,7 +32,7 @@ public class EnhancedWolfCollarLayer<T extends TameableEntity, M extends EntityM
                 float g = (rgb >> 8) & 0xFF;
                 float b = rgb & 0xFF;
 
-                func_229141_a_(getEntityModel(), WOLF_COLLAR, stack, renderType, p_225628_3_, entity, r / 255.0F, g / 255.0F, b / 255.0F);
+                renderCutoutModel(getEntityModel(), WOLF_COLLAR, stack, renderType, p_225628_3_, entity, r / 255.0F, g / 255.0F, b / 255.0F);
             });
         }
     }
